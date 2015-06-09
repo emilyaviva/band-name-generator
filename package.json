@@ -1,12 +1,13 @@
 {
   "name": "simple-site",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codefellows/band-name-generator"
+    "url": "https://github.com/emilyaviva/band-name-generator"
   },
-  "description": "Example Site for JavaScript F2 at Code Fellows",
+  "description": "Random Band Name Generator: CodeFellows, JavaScript Foundations II",
   "dependencies": {
+    "express": "^4.12.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
