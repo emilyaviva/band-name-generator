@@ -1,23 +1,62 @@
 var express = require("express");
+var bodyParser = require("body-parser");
+
+var getRandomWord = require("./lib/getRandomWord");
+var Adjective = require("./lib/adjective");
+
 var app = express();
 var port = process.env.PORT || 3000;
 
-var quotes = [
-  '"The line must be drawn here! This far, no further!" -Captain Jean-Luc Picard',
-  '"Brannigan\'s Law is like Brannigan\'s love: hard and fast." -Major-General-Webelo Zapp Brannigan',
-  '"That\'s not soon enough!" -Phillip J. Fry'
-]
+app.use(express.static(__dirname + "/app/"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-var adjectives = [ 'Funny', 'Humorous', 'Gigantic', 'Mega', 'Tiny', 'Green', 'Slippery' ];
+var Noun = function () {
+	this.Tables = true;
+	this.Laptops = true;
+	this.Shirts = true;
+	this.Presidents = true;
+	this.Genders = true;
+};
+var noun = new Noun();
 
-app.get("/", function (req, res) {
-	var randomIndex = Math.floor(Math.random()*quotes.length);
-	res.send(quotes[randomIndex]);
+var Verb = function () {
+	this.Kick = true;
+	this.Bring = true;
+	this.Die = true;
+	this.Love = true;
+	this.Connect = true;
+	this.Slay = true;
+};
+var verb = new Verb;
+
+var adjective = new Adjective;
+
+function postWord (word, wordObject) {
+	var msg;
+	if (wordObject.hasOwnProperty(word)) {
+		msg = "We already have your word: ";
+	} else {
+		wordObject[word] = true;
+		msg = "We saved your word: ";
+	}
+	return {message: msg, confirm: word};
+}
+
+app.post("/adjective", function (req, res) {
+	res.json(postWord(req.body.word, adjective));
 });
 
 app.get("/adjective", function (req, res) {
-	var randomIndex = Math.floor(Math.random()*adjectives.length);
-	res.json({ word: adjectives[randomIndex]});  
+	getRandomWord(adjective);
+});
+
+app.get("/verb", function (req, res) {
+	getRandomWord(verb);  
+});
+
+app.get("/noun", function (req, res) {
+	getRandomWord(noun);
 });
 
 app.listen(port, function () {
