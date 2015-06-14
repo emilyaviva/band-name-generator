@@ -25,7 +25,7 @@ app.post("/adjective", function (req, res) {
 });
 
 app.get("/adjective", function (req, res) {
-	getRandomWord(adjective);
+	res.json(getRandomWord(adjective));
 });
 
 app.post("/verb", function (req, res) {
@@ -33,7 +33,7 @@ app.post("/verb", function (req, res) {
 });
 
 app.get("/verb", function (req, res) {
-	getRandomWord(verb);
+	res.json(getRandomWord(verb));
 });
 
 app.post("/noun", function (req, res) {
@@ -41,7 +41,7 @@ app.post("/noun", function (req, res) {
 });
 
 app.get("/noun", function (req, res) {
-	getRandomWord(noun);
+	res.json(getRandomWord(noun));
 });
 
 
