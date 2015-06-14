@@ -32,7 +32,7 @@ $(function () {
 		});
 	});
 
-	var generatedBandName = [];
+	var generatedBandName = ['', '', ''];
 	$('#get-name').click(function() {
 		var adjExists = false;
 		var nounExists = false;
@@ -41,20 +41,25 @@ $(function () {
 		$.get('/adjective', function (response) {
 			generatedBandName[0] = response.word;
 			adjExists = true;
+			if (verbExists && nounExists) {
+				$('#band-name').html(generatedBandName[0] + ' ' generatedBandName[1] + ' ' + generatedBandName[2]);
+			}
 		});
 
 		$.get('/verb', function (response) {
-			generatedBandName[1] = generatedBandName + " " + response.word;
+			generatedBandName[1] = response.word;
 			verbExists = true;
+			if (adjExists && nounExists) {
+				$('#band-name').html(generatedBandName[0] + ' ' generatedBandName[1] + ' ' + generatedBandName[2]);
+			}
 		});
 
 		$.get('/noun', function (response) {
-			generatedBandName[2] = generatedBandName + " " + response.word;
+			generatedBandName[2] = response.word;
 			nounExists = true;
+			if (adjExists && verbExists) {
+				$('#band-name').html(generatedBandName[0] + ' ' generatedBandName[1] + ' ' + generatedBandName[2]);
+			}
 		});
-
-		if (adjExists && verbExists && nounExists) {
-			$('#band-name').html(generatedBandName);
-		}
 	});
 })
