@@ -25,29 +25,27 @@ $(function () {
 	$('#input-noun').on('submit', function (event) {
 		console.log(event);
 		event.preventDefault();
-		var userNoun = $('#user-adjective').val();
+		var userNoun = $('#user-noun').val();
 		$.post('/noun', {word: userNoun}, function (response) {
 			var confirm = response.message + " <em>" + response.confirm + "</em>";
 			$('#word-add-response').html(confirm);
 		});
 	});
 
+	var generatedBandName = '';
 	$('#get-name').click(function() {
 		$.get('/adjective', function (response) {
-			var adjective = response.word;
-			$("#adjective").text(adjective);
+			generatedBandName = response.word;
 		});
 
 		$.get('/verb', function (response) {
-			var verb = response.word;
-			$("#verb").text(verb);
+			generatedBandName = generatedBandName + " " + response.word;
 		});
 
 		$.get('/noun', function (response) {
-			var noun = response.word;
-			$("#noun").text(noun);
+			generatedBandName = generatedBandName + " " + response.word;
 		});
 
-		$('#band-name').html(adjective + verb + noun);
+		$('#band-name').html(generatedBandName);
 	});
 })
