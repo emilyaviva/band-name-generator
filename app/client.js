@@ -25,7 +25,7 @@ $(function () {
 	$('#input-noun').on('submit', function (event) {
 		console.log(event);
 		event.preventDefault();
-		var userAdjective = $('#user-adjective').val();
+		var userNoun = $('#user-adjective').val();
 		$.post('/noun', {word: userNoun}, function (response) {
 			var confirm = response.message + " <em>" + response.confirm + "</em>";
 			$('#word-add-response').html(confirm);
