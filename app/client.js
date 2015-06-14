@@ -34,18 +34,26 @@ $(function () {
 
 	var generatedBandName = '';
 	$('#get-name').click(function() {
+		var adjExists = false;
+		var nounExists = false;
+		var verbExists = false;
 		$.get('/adjective', function (response) {
 			generatedBandName = response.word;
+			adjExists = true;
 		});
 
 		$.get('/verb', function (response) {
 			generatedBandName = generatedBandName + " " + response.word;
+			verbExists = true;
 		});
 
 		$.get('/noun', function (response) {
 			generatedBandName = generatedBandName + " " + response.word;
+			nounExists = true;
 		});
 
-		$('#band-name').html(generatedBandName);
+		if (adjExists && verbExists && nounExists) {
+			$('#band-name').html(generatedBandName);
+		}
 	});
 })
