@@ -10,7 +10,7 @@ $(function () {
 			var confirm = response.message + " <em>" + response.confirm + "</em>";
 			$('#word-add-response').html(confirm);
 		});
-	};
+	})
 
 	$('#input-verb').on('submit', function (event) {
 		console.log(event);
@@ -20,7 +20,7 @@ $(function () {
 			var confirm = response.message + " <em>" + response.confirm + "</em>";
 			$('#word-add-response').html(confirm);
 		});
-	};
+	})
 
 	$('#input-noun').on('submit', function (event) {
 		console.log(event);
@@ -30,7 +30,7 @@ $(function () {
 			var confirm = response.message + " <em>" + response.confirm + "</em>";
 			$('#word-add-response').html(confirm);
 		});
-	};
+	})
 
 	$('#get-name').click(function() {
 		$.get('/adjective', function (response) {
