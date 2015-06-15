@@ -1,17 +1,23 @@
 <html>
 <head>
 	<title>Band Name Generator!</title>
+	<link rel="stylesheet" type="text/css" href="local.css">
 </head>
 <body>
 	<h1>Welcome to the Band Name Generator</h1>
 
-	<h3>Get your own band name!</h3>
+	<h2>Get your own band name!</h2>
 
 	<button id="get-name">Get a Band Name</button>
-	<p id="band-name">
-		
-	</p>
+	<p id="band-name"></p>
 
+	<button id="save-to-favorites">Save to my favorites</button>
+
+	<h4>Favorites</h4>
+
+	<ul id="favorites"></ul>
+	
+	<hr/>
 
 	<h3>Submit new words</h3>
 	<form id="input-adjective">
@@ -33,9 +39,7 @@
 		</label>
 	</form>
 
-	<p id="word-add-response">
-
-	</p>
+	<p id="word-add-response"></p>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="client.js"></script>
