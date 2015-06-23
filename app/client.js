@@ -68,14 +68,19 @@ $(function() {
     });
   });
 
-  $('#save-to-favorites').click(function() {
+  $('body').on('click', '#save-to-favorites', function() {
     var currentBand = $('#band-name').text();
     if (currentBand) {
       var currentBandToID = currentBand.replace(/\s/g, '');
       if ($('#' + currentBandToID).length) {
         $('#' + currentBandToID).css('color', 'red');
       } else {
-        $('#favorites').prepend('<li id="' + currentBandToID + '">' + currentBand + '</li>');
+        $('<li>')
+          .prependTo('#favorites')
+          .attr('id', currentBandToID)
+          .text(currentBand)
+          .css('display', 'none')
+          .fadeIn(2000)
       }
     }
   });
