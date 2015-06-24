@@ -46,6 +46,8 @@ $(function() {
   var generatedBandName = ['', '', ''];
   $('#get-name').click(function() {
 
+    $('#band-name').html('');
+
     $.get('/adjective', function(response) {
       generatedBandName[0] = response.word;
       if (generatedBandName[1] && generatedBandName[2]) {
